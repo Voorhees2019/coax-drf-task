@@ -139,4 +139,5 @@ REST_FRAMEWORK = {
         "anon": "1000/day",
         # 'user': '10000/day',
     },
+    "EXCEPTION_HANDLER": "base.utils.custom_exception_handler",
 }
