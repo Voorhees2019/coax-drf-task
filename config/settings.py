@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Installed apps
     "rest_framework",
+    "django_filters",
     # Custom apps
     "apps.orders",
     "apps.products",
@@ -103,8 +104,11 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
+USE_L10N = False
+
+DATE_INPUT_FORMATS = ["%d-%m-%Y", "%d/%m/%Y"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -122,4 +126,6 @@ REST_FRAMEWORK = {
     # ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%d/%m/%Y"],
 }
