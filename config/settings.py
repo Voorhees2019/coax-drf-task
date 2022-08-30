@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,4 +142,14 @@ REST_FRAMEWORK = {
         # 'user': '10000/day',
     },
     "EXCEPTION_HANDLER": "base.utils.custom_exception_handler",
+}
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_TASK_TIME_LIMIT = 3 * 60
+CELERY_BEAT_SCHEDULE = {
+    "count-apple-products": {
+        "task": "apps.products.tasks.count_apple_products",
+        "schedule": crontab(minute='*/5'),
+    },
 }
